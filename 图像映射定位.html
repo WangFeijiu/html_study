@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<!-- usemap 将图像定义为客户器端图像映射 -->
+		<img src="img/planets.gif" width="145" height="126" alt="planets" usemap="#plantmap"/>
+		<!-- map 客户端图像映射器。通过img标签的usemap与map的name绑定 -->
+		<map name="plantmap">
+			<!-- area 定义图像映射中的区域 -->
+			<area shape="rect" coords="0,0,82,126" alt="Sun" href="http://www.baidu.com" target="_blank"/>
+			<area shape="circle" coords="90,58,3" alt="Mercury" href="http://www.163.com" target="_parent"/>
+			<area shape="circle" coords="124,58,3" alt="Venus" href="http://www.qq.com" target="_top"/>
+		</map>
+	</body>
+</html>
