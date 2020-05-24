@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="myCanvas" height="300" width="300" style="border: 1px #7FFFD4 solid;"></canvas>
+		<script>
+			let c=document.getElementById("myCanvas")
+			let ctx=c.getContext("2d")
+			
+			//图层覆盖顺序 新绘制的覆盖旧的
+			
+			/**左上矩形
+			 *	定义了contecx对象的有填充样式对象中的颜色属性
+			 * */
+			ctx.fillStyle="#F80"
+			ctx.fillRect(0,0,150,150)
+			
+			/**对角线三角
+			 *	定义了contecx对象的无填充样式对象中的颜色属性值
+			 * 	虽然画2线 但是有3点 设置闭合则自动补全线 stroke需要
+			 * 	手动添加闭合，fill()则自带闭合
+			 */
+			ctx.strokeStyle="#ccc"
+			ctx.moveTo(0,0)
+			ctx.lineTo(300,300)
+			ctx.lineTo(200,100)
+			ctx.closePath()
+			ctx.stroke()
+			
+			/**右下圆形
+			 * 	采用的是stroke()画空心圆，那么就会采用contecx对象	
+			 * 	的无填充样式对象的属性，对角线部分定义了颜色属性，
+			 * 	如果再次定义无填充样式对象颜色属性，就会覆盖，全局使
+			 * 	用被覆盖后的值。beginPath()只是对stroke()相关样式起效,
+			 * 	与fill()无关。加了beginPath()则在当前重新开始路径，
+			 * 	beginPath（）前后的该属性值互不影响。若该属性值没有覆盖,
+			 * 	beginPath（）前该属性出现但beginPath（）后没出现，属性
+			 * 	则被继承。若没有beginPath（），全部stroke样式将以最终值
+			 * 	最新的stroke样式绘制
+			 */
+			ctx.beginPath()
+			ctx.strokeStyle="greenyellow"
+			ctx.arc(225,225,75,0,2*Math.PI)
+			ctx.stroke()
+			
+			/**右上文字
+			 * 	分别使用fill stroke 对比可看颜色继承关系
+			 */
+			ctx.font="25px Arial"
+			let txt="hello world"
+			ctx.strokeText(txt,150,40)
+			ctx.fillText("width:"+ctx.measureText(txt).width,150,80)
+			/**右下渐变色
+			 * 	fill（填充）样式虽然会被覆盖，但是不会影响全局，只会
+			 * 	影响覆盖后的元素
+			 */
+			let grd=ctx.createRadialGradient(75,225,10,75,225,75)
+			//let grd=ctx.createRadialGradient(75,225,75,90,250,40)
+			grd.addColorStop(0,"blue")
+			grd.addColorStop(1,"yellow")
+			
+			ctx.fillStyle=grd
+			ctx.fillRect(0,150,150,300)
+			
+			
+		</script>
+	</body>
+</html>
