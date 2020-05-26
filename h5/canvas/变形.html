@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="myCanvas" style="border: 1px antiquewhite solid;" height="300" width="300">您的浏览器不支持canvas,请升级浏览器</canvas>
+		
+		<script>
+			let c = document.getElementById("myCanvas")
+			let ctx = c.getContext("2d")
+			
+			/**中间
+			 * 	保存移动坐标原点之前状态，将坐标原点移动到(100,100) ，
+			 * 	然后再移动后的坐标系中的(0,0)坐标画长宽为100的空心矩形
+			 */
+			ctx.save()
+			ctx.translate(100,100) 
+			ctx.strokeRect(0,0,100,100)
+			
+			/**左上
+			 * 	恢复到坐标系移动前的状态
+			 * 	然后再移动后的坐标系中的(0,0)坐标画长宽为100的空心矩形
+			 */
+			ctx.restore()
+			let grd=ctx.createLinearGradient(0,0,100,100)
+			grd.addColorStop(0,'red')
+			grd.addColorStop('1','green')
+			ctx.strokeStyle=grd
+			ctx.strokeRect(0,0,100,100)
+			
+			//右上
+			ctx.fillStyle=grd
+			ctx.save()
+			ctx.translate(200,0)
+			ctx.rotate(Math.PI/180*45)
+			ctx.fillRect(0,0,100,100)
+			ctx.restore()
+			
+			//左下
+			ctx.save()
+			ctx.scale(0.5,0.5)
+			ctx.fillRect(0,400,150,150)
+			ctx.restore()
+			
+			//右下
+			ctx.fillStyle='antiquewhite'
+			ctx.transform(1, -0.1, 0, 1, 20, 20);
+			ctx.fillRect(200,200,100,100)
+		</script>
+	</body>
+</html>

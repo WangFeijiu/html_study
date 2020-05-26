@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="myCanvas" style="border: 1px antiquewhite solid;" height="300" width="300">您的浏览器不支持canvas,请升级浏览器</canvas>
+		<script>
+			let c=document.getElementById("myCanvas")
+			let ctx=c.getContext("2d")
+			/**左上
+			 * 	save 保存当前context状态，每一个save()都是将快照丢入栈中
+			 * 	restore 恢复到上一个状态，将保存的状态从栈中弹出 后进先出原则
+			 */
+			ctx.fillRect(0,0,100,100)
+			ctx.save()
+			
+			//右上
+			ctx.fillStyle="#7FFFD4 "
+			ctx.fillRect(200,0,100,100)
+			ctx.save()
+			
+			//中间
+			ctx.fillStyle="aliceblue"
+			ctx.fillRect(100,100,100,100)
+			
+			//左下
+			ctx.restore()
+			ctx.fillRect(0,200,100,100)
+			
+			//右下
+			ctx.restore()
+			ctx.fillRect(200,200,100,100)
+		</script>
+	</body>
+</html>

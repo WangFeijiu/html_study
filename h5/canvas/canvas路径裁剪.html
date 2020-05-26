@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="myCanvas" style="border: 1px antiquewhite solid;" height="300" width="300">您的浏览器不支持canvas,请升级浏览器</canvas>
+
+		<script>
+			let c = document.getElementById("myCanvas")
+			let ctx = c.getContext("2d")
+
+			/**
+			 * 	越出路径的裁剪掉不显示
+			 *	clip()后的图层不在路径内的部分不显示
+			 */
+			ctx.beginPath();
+			ctx.arc(0, 0, 100, 0, Math.PI * 2);
+			ctx.clip();
+			ctx.fillStyle = "pink";
+			ctx.fillRect(0, 0, 100, 100);
+		</script>
+	</body>
+</html>

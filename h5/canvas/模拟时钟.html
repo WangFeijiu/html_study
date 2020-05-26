@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="myCanvas" width="300" height="300" style="border: antiquewhite 1px solid;"></canvas>
+		<script>
+			init()
+			function init(){
+				let canvas=document.querySelector("#myCanvas")
+				let ctx=canvas.getContext("2d")
+				draw(ctx)
+			}
+			
+			function draw(ctx){
+				drawDial(ctx)
+				drawAllHands(ctx)
+				requestAnimationFrame(draw(ctx));
+			}
+			
+			// function draw(ctx){
+			//     requestAnimationFrame(function step(){
+			//         drawDial(ctx); //绘制表盘
+			//         drawAllHands(ctx); //绘制时分秒针
+			//         requestAnimationFrame(step);
+			//     });
+			// }
+			
+			function drawAllHands(ctx){
+				let pi=Math.PI
+				let time=new Date()
+				let secondAngle=2*pi/60*time.getSeconds()
+				let minuteAngle=2*pi/60*time.getMinutes()+secondAngle/60
+				let hourAngle=2*pi/12*time.getHours()+minuteAngle/60
+				drawHand(secondAngle,'red',2,120,ctx)
+				drawHand(minuteAngle,'blue',4,100,ctx)
+				drawHand(hourAngle,'green',6,80,ctx)
+			}
+			
+			function drawHand(angle,color,width,length,ctx){
+				ctx.save()
+				ctx.beginPath()
+				ctx.strokeStyle=color
+				ctx.lineCap='round'
+				ctx.lineWidth=width
+				ctx.translate(150,150)
+				ctx.rotate(-Math.PI+angle)
+				ctx.moveTo(0,0)
+				ctx.lineTo(0,length)
+				ctx.stroke()
+				ctx.closePath()
+				ctx.restore()
+			}
+			
+			function drawDial(ctx){
+				ctx.clearRect(0,0,300,300)
+				ctx.fillStyle="#000"
+				ctx.fillRect(0,0,300,300)
+				ctx.save()
+				ctx.translate(150,150)
+				for (let i = 0; i < 60; i++) {
+					ctx.save()
+					ctx.beginPath()
+					ctx.lineWidth=i%5?2:4
+					ctx.strokeStyle=i%5?'blue':'red'
+					ctx.rotate(2*Math.PI/60*i)
+					ctx.moveTo(0,110)
+					ctx.lineTo(0,140)
+					ctx.stroke()
+					ctx.closePath()
+					ctx.restore()
+				}
+				ctx.restore()
+			}
+		</script>
+	</body>
+</html>
