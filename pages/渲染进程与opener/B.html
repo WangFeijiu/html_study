@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>B Page</title>
+	</head>
+	<body>
+		<button onclick="useOpenerMethod()">使用父页面的方法</button>
+		<button onclick="changeOpener()">盗换父页面</button>
+		<button onclick="openC()">打开C页面</button>
+	</body>
+	<script>
+		function useOpenerMethod(){
+			window.opener.test(1234);
+			
+		}
+		function changeOpener(){
+			window.opener.location.href="https://www.baidu.com"
+		}
+		function openC(){
+			window.open("C.html")
+		}
+	</script>
+</html>

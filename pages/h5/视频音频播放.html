@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div style="text-align: center;">
+			<button onclick="playPause()">播放/暂停</button>
+			<button onclick="makeBig()">放大</button>
+			<button onclick="makeSmall()">缩小</button>
+			<button onclick="reset()">普通</button>
+			<br>
+			<video width="400" id="myVideo" controls>
+				<source src="../media/video/bg.mp4" type="video/mp4"></source>
+				no supported
+			</video>
+			<audio id="myAudio" controls>
+				<source src="../media/music/bg.mp3"></source>
+			</audio>
+		</div>
+		<script>
+			let video=document.querySelector("#myVideo")
+			function playPause(){
+				video.paused?video.play():video.pause()
+			}
+			function makeBig(){
+				video.width=500
+			}
+			function makeSmall(){
+				video.width=300
+			}
+			function reset(){
+				video.width=400
+			}
+		</script>
+	</body>
+</html>

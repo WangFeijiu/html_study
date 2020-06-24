@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<p id="tips"></p>
+		<label>Name:</label><input type="text" id="name"/>
+		<input type="submit" onclick="submit()" />
+		<input type="button" onclick="show()" value="查看" />
+		<!-- 不能命名为clear()方法，不会生效的，点击没反应，应该是内置方法 -->
+		<input type="button" onclick="remove()" value="清除" />
+		<a href="nested.html" target="_blank">内链页</a>
+	</body>
+	<script>
+		function submit(){
+			let name= document.querySelector("#name").value.trim()
+			sessionStorage.setItem("name",name)
+		}
+		function show(){
+			let tips=document.querySelector("#tips")
+			tips.innerHTML="My name is "+sessionStorage.getItem("name")
+		}
+		function remove(){
+			 sessionStorage.removeItem("name")
+			//sessionStorage.clear()
+		}
+	</script>
+</html>

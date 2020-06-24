@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			html,
+			body {
+				height: 100%;
+				width: 100%;
+			}
+
+			.table {
+				background-size: 100% 100%;
+				background-image: url(img/scene.jpg);
+				background-repeat: no-repeat;
+				border-spacing: 0;
+				table-layout: fixed;
+			}
+		</style>
+	</head>
+	<body>
+		<table width="800" height="800" id="myTable" class="table"></table>
+		<script>
+			let table = document.querySelector("#myTable")
+
+//生成25行，每行25个32*32像素的单元格
+			for (let j = 0; j < 25; j++) {
+				let tr = document.createElement("tr")
+				table.appendChild(tr)
+				for (let i = 0; i < 25; i++) {
+					let td = document.createElement("td")
+					td.style.width="32px"
+					td.style.height="32px"
+					td.setAttribute("id", j * i + i)
+					tr.appendChild(td)
+				}
+			}
+			window.onload = () => {
+				//在第200块添加摄像头
+				let d = document.getElementById("200")
+				d.style.backgroundImage = 'url(img/camera.png)'
+			}
+		</script>
+	</body>
+</html>
